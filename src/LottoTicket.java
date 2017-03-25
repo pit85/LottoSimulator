@@ -17,15 +17,14 @@ public class LottoTicket{
 		for (int i=0; i<this.numberOfGuesses; i++){
 			boolean isNumberOccupied = true;
 			do {
-			int pickedNumber = (int) (Math.random()*49)+1;
-			if (ArrayUtils.contains(chosenNumbers, pickedNumber) ){
+				int pickedNumber = (int) (Math.random()*49)+1;
+				if (ArrayUtils.contains(chosenNumbers, pickedNumber) ){
 				isNumberOccupied = true;
-			} else {
+				} else {
 				chosenNumbers[i] = pickedNumber;
 				isNumberOccupied = false;
-			}
+				}
 			} while (isNumberOccupied == true);
-
 		}
 		Arrays.sort(chosenNumbers);
 		return chosenNumbers;
@@ -44,5 +43,4 @@ public class LottoTicket{
 		pickNumbers();
 	}
 	
-
 }
