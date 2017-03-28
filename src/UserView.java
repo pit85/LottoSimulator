@@ -108,6 +108,7 @@ public class UserView extends JFrame {
 		            } else {
 		            	simulationID += 1;
 			            Simulator theSimulation = new Simulator(simulationID, numberOfTickets, mainPrize);
+			            theSimulation.getSimulationResults();
 
 			            JTextAreaResultsOfSimulation.setText(theSimulation.getSimulationResults());
 		            }
@@ -130,8 +131,6 @@ public class UserView extends JFrame {
 			
 		}
 		
-    
     }
     
-	
 }

@@ -5,5 +5,4 @@ public class LottoSimulatorTest {
 		UserView.createAndShowGUI();
 		
 	}
-
 }

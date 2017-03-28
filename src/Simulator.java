@@ -15,48 +15,27 @@ public class Simulator {
 	final static double FIVESTOTALNUMBER = 3512.70;
 	private String simulationResults = "";		
 	private String stringEnding;
+	private int[] winningNumbers;
 	
-	public Simulator(int simulationID, int numberOfTickets, int mainPrize){
+//	Constructor - sets simulation results
+	Simulator(int simulationID, int numberOfTickets, int mainPrize){
+		
+		setSimulationResults(simulationID, numberOfTickets, mainPrize);
+		
+	}
+	
+	public String getSimulationResults(){
+		return simulationResults;
+	}
+
+	public void setSimulationResults(int simulationID, int numberOfTickets, int mainPrize){
 		
 //		Integer formating
 		currentLocale = new Locale("pl_PL");
 		numberFormatter = NumberFormat.getNumberInstance(currentLocale);
 		
-//		Winning numbers
-		Drawing output = new Drawing();
-		int winningNumbers[] = output.getDrawingResult();
-		
-//  	Sent tickets
-		LottoTicket[] sentTickets = new LottoTicket[numberOfTickets];
-		for(int i=0; i<numberOfTickets; i++){
-			sentTickets[i] = new LottoTicket("Ticket no:" + (i+1));
-
-//		Checking if ticket won one of the prizes
-			for(int j=0;j<6;j++){
-				
-				if( ArrayUtils.contains(sentTickets[i].getPickedNumbers(), winningNumbers[j])){
-					sentTickets[i].numberOfGuessedNumbers++;	
-				} 
-				
-			} //2nd for loop
-			
-		} //1st for loop
-		
-//		Counting number of winning coupons
-		for (int i=0; i<numberOfTickets; i++){
-			if(sentTickets[i].numberOfGuessedNumbers==3){
-				threes++;
-			}
-			if(sentTickets[i].numberOfGuessedNumbers==4){
-				fours++;
-			}
-			if(sentTickets[i].numberOfGuessedNumbers==5){
-				fives++;
-			}
-			if(sentTickets[i].numberOfGuessedNumbers==6){
-				sixes = 1; //it is possible to win main prize only once
-			}
-		}
+//		Perform simulation
+		simulateLotto(numberOfTickets);
 		
 //		Evaluating earnigns netto, costs, revenue
 		totalCostOfTickets = numberOfTickets * COSTOFTICKET;
@@ -97,12 +76,45 @@ public class Simulator {
 		return stringEnding;
 	}
 	
-	public String getSimulationResults(){
-		return simulationResults;
+	private void simulateLotto(int numberOfTickets){
+		
+//		Drawing winning numbers
+		Drawing output = new Drawing();
+		int winningNumbers[] = output.getDrawingResult();
+		
+//  	Sending tickets
+		LottoTicket[] sentTickets = new LottoTicket[numberOfTickets];
+		for(int i=0; i<numberOfTickets; i++){
+			sentTickets[i] = new LottoTicket("Ticket no:" + (i+1));
+
+//		Checking if ticket won one of the prizes
+			for(int j=0;j<6;j++){
+				
+				if( ArrayUtils.contains(sentTickets[i].getPickedNumbers(), winningNumbers[j])){
+					sentTickets[i].setNumberOfGuessedNumbers(sentTickets[i].getNumberOfGuessedNumbers() + 1);	
+				} 
+				
+			} //2nd for loop
+			
+		} //1st for loop
+		
+//		Counting number of winning coupons
+		for (int i=0; i<numberOfTickets; i++){
+			if(sentTickets[i].getNumberOfGuessedNumbers()==3){
+				threes++;
+			}
+			if(sentTickets[i].getNumberOfGuessedNumbers()==4){
+				fours++;
+			}
+			if(sentTickets[i].getNumberOfGuessedNumbers()==5){
+				fives++;
+			}
+			if(sentTickets[i].getNumberOfGuessedNumbers()==6){
+				sixes = 1; //it is possible to win main prize only once
+			}
+		}
+		
+		
 	}
-	
-	public void setSimulationResults(String simulationResults){
-		this.simulationResults = simulationResults;
-	}
-	
+
 }
