@@ -11,8 +11,8 @@ import javax.swing.border.EmptyBorder;
 public class UserView extends JFrame {
 	
 	final static int maxGap = 20;
-    private String[] labels = {" Nagroda g³ówna (mln): ",  " Liczba losów na loterii: "};
-    private int numPairs = labels.length;
+	private String[] labels = {" Nagroda g³ówna (mln): ",  " Liczba losów na loterii: "};
+	private int numPairs = labels.length;
 	private JPanel buttonsPanel, inputsPanel , resultsPanel;
 	private JButton startSimulationButton, clearButton;
 	private JTextArea JTextAreaResultsOfSimulation;
@@ -110,7 +110,7 @@ public class UserView extends JFrame {
 			            Simulator theSimulation = new Simulator(simulationID, numberOfTickets, mainPrize);
 			            theSimulation.getSimulationResults();
 
-			            JTextAreaResultsOfSimulation.setText(theSimulation.getSimulationResults());
+			            JTextAreaResultsOfSimulation.setText( theSimulation.getSimulationResults() );
 		            }
 		            
 

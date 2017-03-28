@@ -10,9 +10,9 @@ public class Simulator {
 	private int threes, fours, fives, sixes;
 	private double totalCostOfTickets, earnigs, revenue;
 	final static double COSTOFTICKET = 3;
-	final static double THREESTOTALNUMBER = 24;
-	final static double FOURSTOTALNUMBER = 138.10;
-	final static double FIVESTOTALNUMBER = 3512.70;
+	final static double PRIZEFORTHREES = 24;
+	final static double PRIZEFORFOUR = 138.10;
+	final static double PRIZEFORFIVES = 3512.70;
 	private String simulationResults = "";		
 	private String stringEnding;
 	private int[] winningNumbers;
@@ -39,8 +39,8 @@ public class Simulator {
 		
 //		Evaluating earnigns netto, costs, revenue
 		totalCostOfTickets = numberOfTickets * COSTOFTICKET;
-		earnigs = threes * THREESTOTALNUMBER + fours * FOURSTOTALNUMBER + fives * FIVESTOTALNUMBER + sixes * mainPrize- totalCostOfTickets;
-		revenue = threes * THREESTOTALNUMBER + fours * FOURSTOTALNUMBER + fives * FIVESTOTALNUMBER + sixes * mainPrize;
+		earnigs = threes * PRIZEFORTHREES + fours * PRIZEFORFOUR + fives * PRIZEFORFIVES + sixes * mainPrize- totalCostOfTickets;
+		revenue = threes * PRIZEFORTHREES + fours * PRIZEFORFOUR + fives * PRIZEFORFIVES + sixes * mainPrize;
 		
 //		Simulation result printed in Text Area
 		simulationResults = 
